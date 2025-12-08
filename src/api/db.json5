@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Fix front-end bug",
+      "description": "Resolve layout shift on dashboard page.",
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "title": "Implement login flow",
+      "description": "Create login API integration and form validation.",
+      "status": "In Progress"
+    },
+    {
+      "id": 3,
+      "title": "Write documentation",
+      "description": "Add README and API usage examples.",
+      "status": "Completed"
+    }
+  ]
+}

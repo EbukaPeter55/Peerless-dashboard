@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Table, { Column } from "../Table";
+import Table, { type Column } from "../components/shared/Table";
 import "@testing-library/jest-dom";
 
 interface TestData {

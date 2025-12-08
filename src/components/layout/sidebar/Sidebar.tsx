@@ -13,7 +13,7 @@ export default function Sidebar({ collapsed, toggleCollapse, isMobile, closeSide
 
     const links = [
         { to: "/", icon: <FiGrid size={20} />, label: "Dashboard" },
-        { to: "/departments", icon: <FiLayers size={20} />, label: "Departments" },
+        { to: "/task", icon: <FiLayers size={20} />, label: "Tasks" },
         { to: "/patients", icon: <FiUser size={20} />, label: "Patients" },
         { to: "/settings", icon: <FiSettings size={20} />, label: "Settings" },
     ];
