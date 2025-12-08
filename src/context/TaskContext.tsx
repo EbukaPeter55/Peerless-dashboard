@@ -7,6 +7,7 @@ interface TaskContextType {
     loading: boolean;
     error: string | null;
     refreshTasks: () => void;
+    updateTask: (updatedTask: Task) => Promise<void>;
 }
 
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -29,12 +30,22 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const updateTask = async (updatedTask: Task) => {
+        try {
+            const result = await TaskService.updateTaskStatus(updatedTask.id, updatedTask.status);
+            setTasks(prev => prev.map(t => t.id === result.id ? result : t));
+        } catch (err: any) {
+            console.error("Failed to update task", err);
+            throw err;
+        }
+    };
+
     useEffect(() => {
         fetchTasks();
     }, []);
 
     return (
-        <TaskContext.Provider value={{ tasks, loading, error, refreshTasks: fetchTasks }}>
+        <TaskContext.Provider value={{ tasks, loading, error, refreshTasks: fetchTasks, updateTask }}>
             {children}
         </TaskContext.Provider>
     );

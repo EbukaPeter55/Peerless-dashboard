@@ -5,6 +5,7 @@ export interface Task {
     title: string;
     description: string;
     status: "Pending" | "In Progress" | "Completed";
+    dueDate: string;
 }
 
 export const TaskService = {
