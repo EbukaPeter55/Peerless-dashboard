@@ -51,7 +51,7 @@ After installing `json-server`, you can start the server by running the followin
 npx json-server db.json
 ```
 
-### To run the Frontend React vite app, you must have a miniumu of node 20+, I made use of node v22.12.0
+### To run the Frontend React vite app, you must have a miniumum of node 20+, I made use of node v22.12.0
 
 First of all install all dependencies using:
 
