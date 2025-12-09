@@ -19,7 +19,14 @@ I choosed the **React Context API** for managing the application state for sever
 2.  **Global State Access**: It effectively solves the "prop-drilling" problem, allowing state (like task lists and user preferences) to be accessible by any component in the tree, intimately connecting the dashboard widgets with the task list.
 3.  **Built-in Efficiency**: As a native React feature, it eliminates the need for additional external dependencies, keeping the bundle size smaller and maintenance easier.
 
-## How to run this app
+## How to run database of this app
+### To setup the database and api, do the following below:
+
+Create a .env file in the root directory of the project and add the following line:
+```bash
+VITE_API_BASE_URL=http://localhost:3000
+```
+
 To run this app, you need to have `json-server` installed globally. If not, you can install it using the following command:
 ```bash
 pnpm add -D json-server
@@ -31,7 +38,7 @@ After installing `json-server`, you can start the server by running the followin
 npx json-server db.json
 ```
 
-To run the React vite app, you must have a miniumu of node 20+, I made use of node v22.12.0
+### To run the Frontend React vite app, you must have a miniumu of node 20+, I made use of node v22.12.0
 
 First of all install all dependencies using:
 
