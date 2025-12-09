@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create Axios instance
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000",
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
@@ -12,7 +12,6 @@ const api = axios.create({
 // Request Interceptor
 api.interceptors.request.use(
     (config) => {
-        console.log(`[API] ${config.method?.toUpperCase()} Request to ${config.url}`);
         return config;
     },
     (error) => {
@@ -26,7 +25,6 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
-        console.error("[API Error]", error.response?.data || error.message);
         return Promise.reject(error);
     }
 );

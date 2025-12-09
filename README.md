@@ -2,8 +2,21 @@
 
 A comprehensive task management dashboard designed to help users organize, track, and visualize their daily tasks. It provides a centralized place to manage tasks and track their progress.
 
-## Node Version
+## Node Version used
 **Version 22**
+
+## Technologies used
+-   **React**
+-   **React Router**
+-   **Chart.js**
+-   **Styled Components**
+-   **React Icons**
+-   **Axios**
+-   **TypeScript**
+-   **Vite**
+-   **Jest**
+-   **React testing library**
+-   **json-server**
 
 ## Features
 -   **Dashboard Overview**: Visual analytics of task status using interactive Bar and Doughnut charts.
@@ -48,6 +61,10 @@ First of all install all dependencies using:
  Then run the app using:
 ```bash
 pnpm dev
+```
+### To run the test, use the command:
+```bash
+pnpm test
 ```
 
 After running the app, you can access it at `http://localhost:5173`.
