@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Table, { type Column } from "../components/shared/Table";
 import "@testing-library/jest-dom";
+import type { Column } from "../types/table";
+import Table from "../components/shared/Table";
 
 interface TestData {
     id: number;
