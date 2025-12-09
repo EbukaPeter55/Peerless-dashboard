@@ -1,17 +1,6 @@
-import type { ReactNode } from "react";
 import { TableContainer, StyledTable, TableTitle } from "./Table.styles";
 
-export interface Column<T> {
-    key: string;
-    header: string;
-    render?: (item: T) => ReactNode;
-}
-
-interface TableProps<T> {
-    title?: string;
-    columns: Column<T>[];
-    data: T[];
-}
+import type { TableProps } from "../../types/table";
 
 export default function Table<T>({ title, columns, data }: TableProps<T>) {
     return (

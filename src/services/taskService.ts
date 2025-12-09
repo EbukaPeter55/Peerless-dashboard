@@ -1,12 +1,5 @@
 import api from "../api/axios";
-
-export interface Task {
-    id: number;
-    title: string;
-    description: string;
-    status: "Pending" | "In Progress" | "Completed";
-    dueDate: string;
-}
+import type { Task } from "../types/task";
 
 export const TaskService = {
     getAllTasks: async (): Promise<Task[]> => {
@@ -19,7 +12,6 @@ export const TaskService = {
         return response.data;
     },
 
-    // Example of scalability: easy to add new methods
     updateTaskStatus: async (id: number, status: Task["status"]): Promise<Task> => {
         const response = await api.patch<Task>(`/tasks/${id}`, { status });
         return response.data;

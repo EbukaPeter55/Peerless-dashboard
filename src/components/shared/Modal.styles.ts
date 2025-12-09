@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const ModalOverlay = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+export const ModalOverlay = styled.div<{ $isOpen: boolean }>`
+  display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@ export const ModalOverlay = styled.div<{ isOpen: boolean }>`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transition: opacity 0.3s ease;
 `;
 

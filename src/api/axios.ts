@@ -12,10 +12,6 @@ const api = axios.create({
 // Request Interceptor
 api.interceptors.request.use(
     (config) => {
-        // You can add auth tokens here if needed
-        // const token = localStorage.getItem("token");
-        // if (token) config.headers.Authorization = `Bearer ${token}`;
-
         console.log(`[API] ${config.method?.toUpperCase()} Request to ${config.url}`);
         return config;
     },

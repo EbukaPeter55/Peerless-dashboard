@@ -1,13 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { SidebarContainer, Logo, MenuItem, ToggleButton } from "./Sidebar.styles";
-import { FiGrid, FiUser, FiSettings, FiLayers, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiGrid, FiLayers, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-interface SidebarProps {
-    collapsed: boolean;
-    toggleCollapse: () => void;
-    isMobile: boolean;
-    closeSidebar: () => void;
-}
+import type { SidebarProps } from "../../../types/layout";
 
 export default function Sidebar({ collapsed, toggleCollapse, isMobile, closeSidebar }: SidebarProps) {
 
@@ -22,15 +17,15 @@ export default function Sidebar({ collapsed, toggleCollapse, isMobile, closeSide
     };
 
     return (
-        <SidebarContainer collapsed={collapsed}>
-            <Logo collapsed={collapsed}>Medix.</Logo>
+        <SidebarContainer $collapsed={collapsed}>
+            <Logo $collapsed={collapsed}>Taskify.</Logo>
 
             {links.map(({ to, icon, label }) => (
                 <NavLink key={to} to={to} className="nav" end>
                     {({ isActive }) => (
                         <MenuItem
-                            collapsed={collapsed}
-                            active={isActive}
+                            $collapsed={collapsed}
+                            $active={isActive}
                             onClick={handleMobileClick}
                         >
                             {icon}

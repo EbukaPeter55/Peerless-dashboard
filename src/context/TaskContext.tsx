@@ -1,14 +1,8 @@
 import type { ReactNode } from "react";
 import { createContext, useState, useEffect } from "react";
-import { type Task, TaskService } from "../services/taskService";
-
-export interface TaskContextType {
-    tasks: Task[];
-    loading: boolean;
-    error: string | null;
-    refreshTasks: () => void;
-    updateTask: (updatedTask: Task) => Promise<void>;
-}
+import { type Task } from "../types/task";
+import type { TaskContextType } from "../types/context";
+import { TaskService } from "../services/taskService";
 
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
 

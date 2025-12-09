@@ -31,8 +31,9 @@ const Backdrop = styled.div`
 `;
 
 /* NEW MAIN CONTENT WRAPPER */
-const Main = styled.div<{ sidebarWidth: number; isMobile: boolean }>`
-  margin-left: ${({ isMobile, sidebarWidth }) => (isMobile ? 0 : sidebarWidth)}px;
+/* NEW MAIN CONTENT WRAPPER */
+const Main = styled.div<{ $sidebarWidth: number; $isMobile: boolean }>`
+  margin-left: ${({ $isMobile, $sidebarWidth }) => ($isMobile ? 0 : $sidebarWidth)}px;
   padding: 25px;
   transition: margin-left 0.3s ease;
   min-height: 100vh;
@@ -44,51 +45,51 @@ const Main = styled.div<{ sidebarWidth: number; isMobile: boolean }>`
 `;
 
 export default function Layout() {
-    const [collapsed, setCollapsed] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-    // Detect screen size
-    useEffect(() => {
-        const checkWidth = () => {
-            const mobile = window.innerWidth <= 768;
-            setIsMobile(mobile);
-            setSidebarOpen(!mobile); // hide sidebar on mobile by default
-        };
+  // Detect screen size
+  useEffect(() => {
+    const checkWidth = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      setSidebarOpen(!mobile); // hide sidebar on mobile by default
+    };
 
-        checkWidth();
-        window.addEventListener("resize", checkWidth);
-        return () => window.removeEventListener("resize", checkWidth);
-    }, []);
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
-    const sidebarWidth = collapsed ? 80 : 240;
+  const sidebarWidth = collapsed ? 80 : 240;
 
-    return (
-        <>
-            {/* MOBILE HAMBURGER */}
-            <MobileHamburger onClick={() => setSidebarOpen(!sidebarOpen)}>
-                <FiMenu size={24} />
-            </MobileHamburger>
+  return (
+    <>
+      {/* MOBILE HAMBURGER */}
+      <MobileHamburger onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <FiMenu size={24} />
+      </MobileHamburger>
 
-            {/* BACKDROP */}
-            {isMobile && sidebarOpen && (
-                <Backdrop onClick={() => setSidebarOpen(false)} />
-            )}
+      {/* BACKDROP */}
+      {isMobile && sidebarOpen && (
+        <Backdrop onClick={() => setSidebarOpen(false)} />
+      )}
 
-            {/* SIDEBAR */}
-            {sidebarOpen && (
-                <Sidebar
-                    collapsed={collapsed}
-                    toggleCollapse={() => setCollapsed(!collapsed)}
-                    isMobile={isMobile}
-                    closeSidebar={() => isMobile && setSidebarOpen(false)}
-                />
-            )}
+      {/* SIDEBAR */}
+      {sidebarOpen && (
+        <Sidebar
+          collapsed={collapsed}
+          toggleCollapse={() => setCollapsed(!collapsed)}
+          isMobile={isMobile}
+          closeSidebar={() => isMobile && setSidebarOpen(false)}
+        />
+      )}
 
-            {/* FIXED MAIN CONTENT WRAPPER */}
-            <Main sidebarWidth={sidebarWidth} isMobile={isMobile}>
-                <Outlet context={{ sidebarWidth }} />
-            </Main>
-        </>
-    );
+      {/* FIXED MAIN CONTENT WRAPPER */}
+      <Main $sidebarWidth={sidebarWidth} $isMobile={isMobile}>
+        <Outlet context={{ sidebarWidth }} />
+      </Main>
+    </>
+  );
 }

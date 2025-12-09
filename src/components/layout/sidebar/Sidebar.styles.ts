@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const SidebarContainer = styled.div<{ collapsed: boolean }>`
-  width: ${({ collapsed }) => (collapsed ? "80px" : "240px")};
+export const SidebarContainer = styled.div<{ $collapsed: boolean }>`
+  width: ${({ $collapsed }) => ($collapsed ? "80px" : "240px")};
   transition: 0.3s ease;
   background: white;
   height: 100vh;
@@ -18,30 +18,30 @@ export const SidebarContainer = styled.div<{ collapsed: boolean }>`
   }
 `;
 
-export const Logo = styled.div<{ collapsed: boolean }>`
-  font-size: ${({ collapsed }) => (collapsed ? "20px" : "26px")};
+export const Logo = styled.div<{ $collapsed: boolean }>`
+  font-size: ${({ $collapsed }) => ($collapsed ? "20px" : "26px")};
   font-weight: 700;
   margin-bottom: 30px;
   text-align: center;
   color: #6c4af2;
 `;
 
-export const MenuItem = styled.div<{ collapsed: boolean; active?: boolean }>`
+export const MenuItem = styled.div<{ $collapsed: boolean; $active?: boolean }>`
   display: flex;
   align-items: center;
-  gap: ${({ collapsed }) => (collapsed ? "0" : "14px")};
+  gap: ${({ $collapsed }) => ($collapsed ? "0" : "14px")};
   padding: 10px 12px;
   margin-bottom: 8px;
   border-radius: 8px;
   cursor: pointer;
-  background: ${({ active }) => (active ? "#f1eaff" : "transparent")};
+  background: ${({ $active }) => ($active ? "#f1eaff" : "transparent")};
 
   &:hover {
     background: #f4f4f4;
   }
 
   span {
-    display: ${({ collapsed }) => (collapsed ? "none" : "inline")};
+    display: ${({ $collapsed }) => ($collapsed ? "none" : "inline")};
   }
 `;
 

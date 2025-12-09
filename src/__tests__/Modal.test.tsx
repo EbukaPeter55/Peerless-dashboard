@@ -32,8 +32,7 @@ describe('Modal Component', () => {
     it('calls onClose when close button is clicked', () => {
         render(<Modal {...defaultProps} />);
 
-        // The close button contains the FiX icon
-        // We can find it by looking for the button element
+        // Find the close button by looking for the button element
         const closeButton = screen.getByRole('button');
         fireEvent.click(closeButton);
 

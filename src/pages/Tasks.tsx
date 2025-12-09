@@ -1,72 +1,25 @@
 import { useState, useMemo } from "react";
-import styled from "styled-components";
-import Table, { type Column } from "../components/shared/Table";
+import Table from "../components/shared/Table";
+import type { Column } from "../types/table";
 import { useTasks } from "../hooks/useTasks";
-import { type Task } from "../services/taskService";
-import { FiEye, FiEdit2 } from "react-icons/fi";
+import { type Task } from "../types/task";
 import Modal from "../components/shared/Modal";
-
-const Page = styled.div`
-  /* padding handled by Layout */
-`;
-
-const ControlsContainer = styled.div`
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-`;
-
-const Select = styled.select`
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: white;
-  min-width: 150px;
-`;
-
-const Button = styled.button`
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  
-  &:hover {
-      background: #f5f5f5;
-  }
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  p {
-      color: #555;
-      line-height: 1.5;
-  }
-  
-  label {
-      font-weight: 600;
-      font-size: 14px;
-      color: #333;
-  }
-`;
-
-const SaveButton = styled.button`
-    background: #6c4af2;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    
-    &:hover {
-        background: #5b3ddb;
-    }
-`;
+import {
+    Page,
+    HeaderContainer,
+    Title,
+    ControlsContainer,
+    Select,
+    StartSelect,
+    Button,
+    ModalContent,
+    SaveButton,
+    FormContainer,
+    StatusBadge,
+    ActionsContainer,
+    ViewIcon,
+    EditIcon
+} from "./Tasks.styles";
 
 export default function Tasks() {
     const { tasks, loading, error, updateTask } = useTasks();
@@ -125,25 +78,19 @@ export default function Tasks() {
             key: "status",
             header: "Status",
             render: (task) => (
-                <span style={{
-                    padding: "6px 12px",
-                    borderRadius: "8px",
-                    background: task.status === "Completed" ? "#e6ffe8" : task.status === "In Progress" ? "#fff4e6" : "#ffe6e6",
-                    color: task.status === "Completed" ? "#0a9a00" : task.status === "In Progress" ? "#d97706" : "#cc0000",
-                    fontWeight: 500
-                }}>
+                <StatusBadge $status={task.status}>
                     {task.status}
-                </span>
+                </StatusBadge>
             )
         },
         {
             key: "actions" as any,
             header: "Actions",
             render: (task) => (
-                <div style={{ display: "flex", gap: "10px" }}>
-                    <FiEye size={18} style={{ cursor: "pointer", color: "#666" }} onClick={() => handleView(task)} />
-                    <FiEdit2 size={18} style={{ cursor: "pointer", color: "#6c4af2" }} onClick={() => handleEdit(task)} />
-                </div>
+                <ActionsContainer>
+                    <ViewIcon size={18} onClick={() => handleView(task)} />
+                    <EditIcon size={18} onClick={() => handleEdit(task)} />
+                </ActionsContainer>
             )
         }
     ];
@@ -153,8 +100,8 @@ export default function Tasks() {
 
     return (
         <Page>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-                <h2>Tasks Board</h2>
+            <HeaderContainer>
+                <Title>Tasks Board</Title>
                 <ControlsContainer>
                     <Select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                         <option value="All">All Statuses</option>
@@ -167,7 +114,7 @@ export default function Tasks() {
                         Sort Date: {sortOrder.toUpperCase()}
                     </Button>
                 </ControlsContainer>
-            </div>
+            </HeaderContainer>
 
             <Table
                 title={`Project Tasks (${filteredTasks.length})`}
@@ -201,20 +148,18 @@ export default function Tasks() {
                                 <p>{selectedTask.status}</p>
                             </div>
                         ) : (
-                            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                            <FormContainer>
                                 <label>Status</label>
-                                <Select
+                                <StartSelect
                                     value={editStatus}
                                     onChange={(e) => setEditStatus(e.target.value as any)}
-                                    style={{ width: "100%" }}
                                 >
                                     <option value="Pending">Pending</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Completed">Completed</option>
-                                </Select>
-                                <div style={{ height: "10px" }} />
+                                </StartSelect>
                                 <SaveButton onClick={handleSave}>Save Changes</SaveButton>
-                            </div>
+                            </FormContainer>
                         )}
                     </ModalContent>
                 )}
