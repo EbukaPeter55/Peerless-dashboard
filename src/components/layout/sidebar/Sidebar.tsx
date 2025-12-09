@@ -13,9 +13,7 @@ export default function Sidebar({ collapsed, toggleCollapse, isMobile, closeSide
 
     const links = [
         { to: "/", icon: <FiGrid size={20} />, label: "Dashboard" },
-        { to: "/task", icon: <FiLayers size={20} />, label: "Tasks" },
-        { to: "/patients", icon: <FiUser size={20} />, label: "Patients" },
-        { to: "/settings", icon: <FiSettings size={20} />, label: "Settings" },
+        { to: "/task", icon: <FiLayers size={20} />, label: "Tasks" }
     ];
 
     // When a menu item is clicked on mobile → close sidebar

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { createContext, useState, useEffect } from "react";
 import { type Task, TaskService } from "../services/taskService";
 
-interface TaskContextType {
+export interface TaskContextType {
     tasks: Task[];
     loading: boolean;
     error: string | null;

@@ -1,22 +1,22 @@
 import { Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import Layout from "../components/layout/Layout";
-import Dashboard from "../pages/Dashboard";
-import Tasks from "../pages/Tasks";
-import Patients from "../pages/Patients";
-import Settings from "../pages/Settings";
-import NotFound from "../pages/NotFound";
+
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Tasks = lazy(() => import("../pages/Tasks"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 export default function AppRouter() {
     return (
-        <Routes>
-            <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/task" element={<Tasks />} />
-                <Route path="/patients" element={<Patients />} />
-                <Route path="/settings" element={<Settings />} />
-            </Route>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/task" element={<Tasks />} />
+                </Route>
 
-            <Route path="*" element={<NotFound />} />
-        </Routes>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Suspense>
     );
 }
